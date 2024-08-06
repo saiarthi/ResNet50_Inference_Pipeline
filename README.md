@@ -31,15 +31,18 @@ pip install -r requirements.txt
 # Project Structure
 ```bash
 resnet50-inference-comparison/
-│
-├── compare_models.py              # Script to compare the outputs of both models
-├── comp_pcc.py                    # Pearson Correlation Coefficient computation
-├── load_image.py                  # Image loading and preprocessing utilities
-├── local_model_inference.py       # Local model inference script
-├── reference_model_inference.py   # Reference model inference script
-├── resnet50.py                    # Custom ResNet50 model definition
 ├── requirements.txt               # Project dependencies
 ├── README.md                      # Project readme
+pytest
+    ├── test_model_comparison.py
+    ├── test_submodule_comparison.py
+src 
+    ├── compare_models.py              # Script to compare the outputs of both models
+    ├── comp_pcc.py                    # Pearson Correlation Coefficient computation
+    ├── load_image.py                  # Image loading and preprocessing utilities
+    ├── local_model_inference.py       # Local model inference script
+    ├── reference_model_inference.py   # Reference model inference script
+    ├── resnet50.py                    # Custom ResNet50 model definition
 ```
 
 # Usage
