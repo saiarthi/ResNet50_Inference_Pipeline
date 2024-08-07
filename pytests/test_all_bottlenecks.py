@@ -26,7 +26,7 @@ def load_resnet50_bottlenecks(request):
     idx, layer, in_channels, height, width = request.param
     torch_model = torchvision_resnet50(weights=ResNet50_Weights.DEFAULT)
     ref_model = ResNet50()
-    ref_model.load_state_dict(torch.load('src/resnet50_torchvision_weights.pth'))
+    ref_model.load_state_dict(torch.load('src/resnet50_torchvision_weights.pth', weights_only=True))
     torch_layer = getattr(torch_model, layer)[idx]
     ref_layer = getattr(ref_model, layer)[idx]
     return torch_layer, ref_layer, in_channels, height, width
@@ -44,8 +44,8 @@ def test_resnet50_bottlenecks(load_resnet50_bottlenecks):
         ref_output = ref_layer(input_tensor)
 
     result, pcc_value = comp_pcc(torch_output, ref_output)
-    assert result, f"ResNet50 Bottleneck submodule does not match. PCC: {pcc_value}"
-    print(f"ResNet50 Bottleneck submodule PCC: {pcc_value}")
+    assert result, f"ResNet50 Bottleneck submodule does not match. {pcc_value}"
+    print(f"ResNet50 Bottleneck submodule {pcc_value}")
 
 if __name__ == "__main__":
     pytest.main()
